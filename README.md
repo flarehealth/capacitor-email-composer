@@ -17,33 +17,66 @@ Please consider donating if you're using this plugin in an app that makes you mo
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Content**
 
-- [Install](#install)
-- [Attachments](#attachments)
-  - [Device Storage](#device-storage)
-  - [Native resources](#native-resources)
-  - [Assets](#assets)
-  - [Base64](#base64)
-- [API](#api)
-  - [hasAccount()](#hasaccount)
-  - [open(...)](#open)
-  - [Interfaces](#interfaces)
-- [Changelog](#changelog)
+- [Capacitor E-Mail Composer](#capacitor-e-mail-composer)
+  - [Install](#install)
+    - [Consuming Published Version](#consuming-published-version)
+    - [Consuming Local Version](#consuming-local-version)
+  - [Updating the plugin](#updating-the-plugin)
+    - [Publishing](#publishing)
+  - [Usage](#usage)
+    - [Attachments](#attachments)
+      - [Device Storage](#device-storage)
+      - [Native resources](#native-resources)
+      - [Assets](#assets)
+      - [Base64](#base64)
+  - [API](#api)
+    - [hasAccount()](#hasaccount)
+    - [open(...)](#open)
+    - [Interfaces](#interfaces)
+      - [OpenOptions](#openoptions)
+      - [Attachment](#attachment)
+  - [Changelog](#changelog)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Install
 
+### Consuming Published Version
+
 ```bash
-npm install capacitor-email-composer
-npx cap sync
+yarn add git+https://github.com/flarehealth/capacitor-email-composer.git
+yarn run cap sync
 ```
 
-## Attachments
+### Consuming Local Version
+
+In order to make local development easier, you can link the local version of the plugin to another project. To do this you can clone the repo on your machine and use the `link` function of yarn so that you don't have to keep building the plugin and adding it in flare-mobile.
+
+```
+yarn add link:</path/to/capacitor-email-composer>
+```
+
+## Updating the plugin
+
+If you would like to add additional functionality to this repo, you can clone this repo under the Flare Health Organization and start making changes. Once you have tested and are done with the changes, you can publish the changes and add it to Flare Mobile.
+
+### Publishing
+
+```
+yarn verify
+yarn build
+```
+
+Be sure to commit the `/dist` directory. This is needed for us to actually add the package in other projects.
+
+## Usage
+
+### Attachments
 
 You can add attachments to the draft mail by using the `attachments` option in the `open(...)` method.
 Every attachment needs a `type` and a `path`. If you are adding a `base64` type attachment, you also need to set the `name`:
 
-### Device Storage
+#### Device Storage
 
 The path to the files must be defined absolute from the root of the file system. On Android the user has to allow the app first to read from external storage!
 
@@ -58,7 +91,7 @@ EmailComposer.open({
 })
 ```
 
-### Native resources
+#### Native resources
 
 Each app has a resource folder, e.g. the res folder for Android apps or the Resource folder for iOS apps. The following example shows how to attach the app icon from within the app's resource folder.
 
@@ -73,7 +106,7 @@ EmailComposer.open({
 })
 ```
 
-### Assets
+#### Assets
 
 The path to the files must be defined relative from the root of the mobile web app assets folder, which is located under the build folder.
 
@@ -88,7 +121,7 @@ EmailComposer.open({
 })
 ```
 
-### Base64
+#### Base64
 
 The code below shows how to attach a base64 encoded image which will be added as an image. **You must set a name**.
 
