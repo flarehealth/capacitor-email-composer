@@ -43,6 +43,8 @@ public class EmailComposerPlugin extends Plugin {
 
     @ActivityCallback
     private void openCallback(PluginCall call, ActivityResult result) {
-        call.resolve();
+        JSObject ret = new JSObject();
+        ret.put("message", "OK");
+        call.resolve(ret);
     }
 }

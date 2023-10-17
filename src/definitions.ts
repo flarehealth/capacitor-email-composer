@@ -14,7 +14,7 @@ export interface EmailComposerPlugin {
    * @param options optional Options to prefill the E-Mail
    * @since 1.0.0
    */
-  open(options?: OpenOptions): Promise<void>;
+  open(options?: OpenOptions): Promise<{ message: string }>;
 }
 
 export interface OpenOptions {

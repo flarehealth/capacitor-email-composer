@@ -31,7 +31,18 @@ public class EmailComposerPlugin: CAPPlugin, MFMailComposeViewControllerDelegate
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
         if(self.savedOpenCall != nil) {
-            self.savedOpenCall?.resolve();
+            let message: String? = if result == MFMailComposeResult.sent {
+                "Email sent."
+            } else if result == MFMailComposeResult.saved {
+                    "Email draft saved."
+            } else if result == MFMailComposeResult.cancelled {
+                    "Email sending cancelled."
+            } else {
+                    "Error occurred when trying to compose email."
+            }
+            var ret = JSObject();
+            ret["message"] = message
+            self.savedOpenCall?.resolve(ret);
         }
     }
 }
