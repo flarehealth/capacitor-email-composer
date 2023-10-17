@@ -135,7 +135,7 @@ Android: Currently does nothing
 ### open(...)
 
 ```typescript
-open(options?: OpenOptions) => Promise<void>
+open(options?: OpenOptions) => Promise<{ message: string; }>
 ```
 
 Open the E-Mail Composer
@@ -143,6 +143,8 @@ Open the E-Mail Composer
 | Param         | Type                                                | Description                            |
 | ------------- | --------------------------------------------------- | -------------------------------------- |
 | **`options`** | <code><a href="#openoptions">OpenOptions</a></code> | optional Options to prefill the E-Mail |
+
+**Returns:** <code>Promise&lt;{ message: string; }&gt;</code>
 
 --------------------
 
